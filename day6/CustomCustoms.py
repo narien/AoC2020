@@ -14,24 +14,17 @@ def countDistinctYes(input):
 
 def countCommonYes(input):
     totalCommon = 0
-    commonQuestions = set()
-    firstInGroup = True
+    groupAnswers = []
 
     for line in input:
+        personAnswers = set()
         if len(line):
-            lineCommonQuestion = set()
             for char in line:
-                lineCommonQuestion.add(char)
-
-            if firstInGroup:
-                commonQuestions = lineCommonQuestion
-                firstInGroup = False
-            else:
-                commonQuestions = commonQuestions.intersection(lineCommonQuestion)
+                personAnswers.add(char)
+            groupAnswers.append(personAnswers)
         else:
-            totalCommon += len(commonQuestions)
-            commonQuestions = set()
-            firstInGroup = True
+            totalCommon += len(groupAnswers[0].intersection(*groupAnswers))
+            groupAnswers = []
 
     return totalCommon
 
