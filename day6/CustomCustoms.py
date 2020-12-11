@@ -1,19 +1,5 @@
-def countDistinctYes(input):
-    totalDistinct = 0
-    uniqueQuestions = set()
-
-    for line in input:
-        if len(line):
-            for char in line:
-                uniqueQuestions.add(char)
-        else:
-            totalDistinct += len(uniqueQuestions)
-            uniqueQuestions = set()
-
-    return totalDistinct
-
-def countCommonYes(input):
-    totalCommon = 0
+def countYesAnswers(input):
+    totalCommon, totalUnique = 0, 0
     groupAnswers = []
 
     for line in input:
@@ -24,9 +10,10 @@ def countCommonYes(input):
             groupAnswers.append(personAnswers)
         else:
             totalCommon += len(groupAnswers[0].intersection(*groupAnswers))
+            totalUnique += len(groupAnswers[0].union(*groupAnswers))
             groupAnswers = []
 
-    return totalCommon
+    return totalUnique, totalCommon
 
 
 
@@ -36,5 +23,4 @@ if __name__ == '__main__':
 
     input.append('') # Used to complete the last group
 
-    print('Part 1: ', countDistinctYes(input))
-    print('Part 2: ', countCommonYes(input))
+    print('Part 1: %d\nPart 2: %d' % countYesAnswers(input))
