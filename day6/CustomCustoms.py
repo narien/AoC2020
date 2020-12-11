@@ -9,8 +9,8 @@ def countYesAnswers(input):
                 personAnswers.add(char)
             groupAnswers.append(personAnswers)
         else:
-            totalCommon += len(groupAnswers[0].intersection(*groupAnswers))
-            totalUnique += len(groupAnswers[0].union(*groupAnswers))
+            totalCommon += len(set.intersection(*groupAnswers))
+            totalUnique += len(set.union(*groupAnswers))
             groupAnswers = []
 
     return totalUnique, totalCommon
