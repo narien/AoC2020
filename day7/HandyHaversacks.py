@@ -31,9 +31,7 @@ def countBagsResultingInGoldenBag(bagMap):
         count += countInternal(bag, bagMap) if bag != 'shiny gold' else 0
     return count
 
-bagContentMem = {}
 def countBagContent(bag, bagMap):
-    global bagContentMem
     total = 0
     for bagAndAmount in bagMap[bag]:
         for key in bagAndAmount.keys():
